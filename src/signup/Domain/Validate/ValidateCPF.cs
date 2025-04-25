@@ -1,8 +1,4 @@
-﻿
-
-using System.Globalization;
-
-namespace signup.Domain.Validate
+﻿namespace signup.Domain.Validate
 {
     public class ValidateCPF
     {
@@ -12,7 +8,7 @@ namespace signup.Domain.Validate
 
         public ValidateCPF(string cpf)
         {
-            _cpf = cpf;            
+            _cpf = cpf;
         }
 
         public bool Validate()
@@ -22,7 +18,7 @@ namespace signup.Domain.Validate
 
             _cpf = Clean(_cpf);
 
-            if(_cpf.Length != VALID_LENGTH)
+            if (_cpf.Length != VALID_LENGTH)
                 return false;
 
             if (AllDigitsEqual(_cpf))
@@ -34,7 +30,7 @@ namespace signup.Domain.Validate
             return ExtractDigit(_cpf) == string.Concat(dg1, dg2);
         }
 
-        public string Clean(string cpf) 
+        public string Clean(string cpf)
         {
             return _cpf.Replace(@"\D", "");
         }
@@ -55,12 +51,12 @@ namespace signup.Domain.Validate
             }
 
             int rest = total % 11;
-            return (rest < 2 ) ? 0 : 11 - rest;
+            return (rest < 2) ? 0 : 11 - rest;
         }
 
         private string ExtractDigit(string cpf)
         {
-            return cpf.Substring(cpf.Length - 2, cpf.Length);
+            return cpf.Substring(cpf.Length - 2, 2);
         }
     }
 }
