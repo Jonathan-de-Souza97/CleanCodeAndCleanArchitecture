@@ -9,7 +9,7 @@ namespace tests
         public void DeveValidarCPFValido1()
         {
             //Arrange
-            const string cpf = "97456321558";
+            const string cpf = "714.287.938-60";
 
             //Act
             var act = new ValidateCPF(cpf);
