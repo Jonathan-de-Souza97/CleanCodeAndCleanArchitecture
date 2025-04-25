@@ -1,4 +1,6 @@
-﻿namespace signup.Domain.Validate
+﻿using System.Text.RegularExpressions;
+
+namespace signup.Domain.Validate
 {
     public class ValidateCPF
     {
@@ -32,7 +34,7 @@
 
         public string Clean(string cpf)
         {
-            return _cpf.Replace(@"\D", "");
+            return Regex.Replace(_cpf, @"\D", "");
         }
 
         private bool AllDigitsEqual(string cpf)
