@@ -1,6 +1,4 @@
-﻿using signup.Domain.Entity;
-
-namespace signup.Application.DTOS
+﻿namespace signup.Application.DTOS
 {
     public class AccountDTO
     {
