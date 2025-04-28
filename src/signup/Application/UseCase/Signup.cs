@@ -26,14 +26,18 @@ namespace signup.Application.UseCase
             var passwordIsValid = ValidatePassword.Execute(input.Password);
             if (!passwordIsValid) return Response<AccountDTO>.Error("Password invalid");
 
-            var account = new AccountDTO
+            var account = input.ToEntity();
+
+
+
+            var dto = new AccountDTO
             {
-                id = new Guid(),
-                Name = input.Name,
-                Email = input.Email,
-                Document = input.Document
+                id = account.id,
+                Name = account.Name,
+                Email = account.Email,
+                Document = account.Document
             };
-            return Response<AccountDTO>.Success(account);
+            return Response<AccountDTO>.Success(dto);
         }
     }
 }

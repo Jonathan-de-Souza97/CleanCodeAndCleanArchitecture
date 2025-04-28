@@ -6,6 +6,8 @@ namespace signup.Domain.Validate.AccountValidation
     {
         public static bool Execute(string email)
         {
+            if(string.IsNullOrWhiteSpace(email)) return false;
+
             return Regex.IsMatch(email, @"^(.+)\@(.+)$");
         }
     }

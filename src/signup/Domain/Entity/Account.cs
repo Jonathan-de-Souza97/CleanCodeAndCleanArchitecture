@@ -13,7 +13,7 @@ namespace signup.Domain.Entity
 
         public Account(string name, string email, string document, string password)
         {
-            id = new Guid();
+            id = Guid.NewGuid();
             Name = name;
             Email = email;
             Document = document;
