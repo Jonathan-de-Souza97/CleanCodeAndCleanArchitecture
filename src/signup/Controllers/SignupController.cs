@@ -1,0 +1,29 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using signup.Application.DTOS;
+using signup.Application.Interfaces;
+
+namespace signup.Controllers
+{
+    [ApiController]
+    [Route("[signup]")]
+    public class SignupController : ControllerBase
+    {
+        
+        private readonly ISignup _useCase;
+
+        public SignupController(ISignup useCase)
+        {
+            _useCase = useCase;
+        }
+
+        public async Task<IActionResult> Signup(InputSignup input)
+        {
+            var response = await _useCase.Execute(input);
+
+            if (!response.Sucess)
+                return UnprocessableEntity(response);
+
+            return Ok(response);
+        }
+    }
+}
