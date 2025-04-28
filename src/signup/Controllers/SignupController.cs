@@ -5,7 +5,7 @@ using signup.Application.Interfaces;
 namespace signup.Controllers
 {
     [ApiController]
-    [Route("[signup]")]
+    [Route("[controller]")]
     public class SignupController : ControllerBase
     {
         
@@ -16,6 +16,8 @@ namespace signup.Controllers
             _useCase = useCase;
         }
 
+        [HttpPost("/v1/Signup")]
+        [Produces("application/json")]
         public async Task<IActionResult> Signup(InputSignup input)
         {
             var response = await _useCase.Execute(input);
