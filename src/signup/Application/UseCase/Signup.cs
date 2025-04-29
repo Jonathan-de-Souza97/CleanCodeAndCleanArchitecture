@@ -30,9 +30,9 @@ namespace signup.Application.UseCase
 
             var dto = new AccountDTO
             {
-                Name = account.Name,
-                Email = account.Email,
-                Document = account.Document
+                name = account.name,
+                email = account.email,
+                document = account.document
             };
             return Response<AccountDTO>.Success(dto);
         }

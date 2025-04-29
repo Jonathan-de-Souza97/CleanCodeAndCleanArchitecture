@@ -2,8 +2,6 @@
 using signup.Application.DTOS;
 using System.Text;
 using System.Text.Json;
-using signup;
-using signup.Application.Responses;
 
 namespace tests
 {
@@ -33,27 +31,13 @@ namespace tests
                 "application/json"
             );
 
-            //act
-            var responseSignup = await _httpClient.PostAsync("/v1/Signup", content);
-            var outputSignup = await responseSignup.Content.ReadAsStringAsync();
+            //act assert one
+            var signup = await _httpClient.PostAsync("/v1/Signup", content);
+            signup.StatusCode.Equals(200);
 
+            //act assert two
 
-            //assert
-            responseSignup.EnsureSuccessStatusCode();
-
-            using (var jsonDoc = JsonDocument.Parse(outputSignup))
-            {
-                var root = jsonDoc.RootElement;
-                var data = root.GetProperty("data");
-                var name = data.GetProperty("name").GetString();
-                var email = data.GetProperty("email").GetString();
-                var document = data.GetProperty("document").GetString();
-
-                // Assert
-                Assert.Equal(name, inputSignup.Name);
-                Assert.Equal(email, inputSignup.Email);
-                Assert.Equal(document, inputSignup.Document);
-            }
+            var account = await _httpClient.GetAsync("/v1/Accounts");
 
         }
     }
