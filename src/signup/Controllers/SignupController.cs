@@ -23,9 +23,9 @@ namespace signup.Controllers
             var response = await _useCase.Execute(input);
 
             if (!response.Sucess)
-                return UnprocessableEntity(response);
+                return StatusCode(422, response);
 
-            return Ok(response);
+            return StatusCode(200, response);
         }
     }
 }
