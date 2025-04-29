@@ -22,7 +22,7 @@ namespace tests
         [InlineData("Jonathan")]
         [InlineData("Jonathan123")]
         [InlineData(null)]
-        public void NaoDeveValidarNomeInValido(string name)
+        public void NaoDeveValidarNomeInvalido(string name)
         {
             //act
             var isValid = ValidateName.Execute(name);

@@ -28,11 +28,8 @@ namespace signup.Application.UseCase
 
             var account = input.ToEntity();
 
-
-
             var dto = new AccountDTO
             {
-                id = account.id,
                 Name = account.Name,
                 Email = account.Email,
                 Document = account.Document

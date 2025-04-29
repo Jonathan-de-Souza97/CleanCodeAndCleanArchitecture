@@ -1,4 +1,6 @@
-﻿namespace signup.Application.Responses
+﻿using System.Text.Json.Serialization;
+
+namespace signup.Application.Responses
 {
     public class Response<T> where T : class
     {
@@ -6,7 +8,8 @@
         public string Message { get; private set; }
         public T? Data { get; set; }
 
-        private Response(bool sucess, string message, T? data)
+        [JsonConstructor]
+        public Response(bool sucess, string message, T? data)
         {
             Sucess= sucess;
             Message = message;
