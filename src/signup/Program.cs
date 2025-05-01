@@ -1,12 +1,25 @@
+using Microsoft.AspNetCore.Authentication;
+using signup.Architecture.Configuration;
 using signup.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var configuration = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json")
+    .Build();
+
+builder.Services.AddScoped(c => new ContextBase(
+    configuration["PostgresTest"]
+    ));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.DependencyInjectionConfig();
+
+
 
 var app = builder.Build();
 

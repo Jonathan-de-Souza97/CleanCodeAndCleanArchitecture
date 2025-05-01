@@ -2,9 +2,10 @@ services:
   postgres:
     image: postgres:14.3
     environment:
-      POSTGRES_PASSWORD: 123456
+      POSTGRES_PASSWORD: 76872985
       POSTGRES_DB: app
     ports:
       - "5432:5432"
     volumes:
-      - ./create/create.pgsql:/docker-entrypoint-initdb.d/init.sql
+      - ./create.pgsql:/docker-entrypoint-initdb.d/createprod.sql
+      - ./createtest.pgsql:/docker-entrypoint-initdb.d/createsqltest.sql
