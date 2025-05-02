@@ -12,6 +12,9 @@ namespace signup.Configuration
         public static ServiceProvider DependencyInjectionConfig(this IServiceCollection service)
         {
             service.AddScoped<ISignup, Signup>();
+            service.AddScoped<IGetUsers, GetUsers>();
+
+
             service.AddScoped<IAccountRepository, AccountRepository>();
 
             return service.BuildServiceProvider();

@@ -11,6 +11,10 @@ namespace signup.Domain.Entity
         public string password { get; set; }
 
 
+        public Account()
+        {
+            
+        }
         public Account(string name, string email, string document, string password)
         {
             accountId = Guid.NewGuid();

@@ -9,18 +9,32 @@ namespace signup.Controllers
     public class SignupController : ControllerBase
     {
         
-        private readonly ISignup _useCase;
+        private readonly ISignup _signup;
+        private readonly IGetUsers _getUsers;
 
-        public SignupController(ISignup useCase)
+        public SignupController(ISignup signup, IGetUsers getUsers)
         {
-            _useCase = useCase;
+            _signup = signup;
+            _getUsers = getUsers;
         }
 
         [HttpPost("/v1/Signup")]
         [Produces("application/json")]
         public async Task<IActionResult> Signup(InputSignup input)
         {
-            var response = await _useCase.Execute(input);
+            var response = await _signup.Execute(input);
+
+            if (!response.Sucess)
+                return StatusCode(422, response);
+
+            return StatusCode(200, response);
+        }
+
+        [HttpPost("/v1/Accounts")]
+        [Produces("application/json")]
+        public async Task<IActionResult> GetAccounts()
+        {
+            var response = await _getUsers.Execute();
 
             if (!response.Sucess)
                 return StatusCode(422, response);

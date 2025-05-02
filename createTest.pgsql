@@ -1,4 +1,4 @@
-﻿drop schema if exists cccaTest cascade;
+drop schema if exists cccaTest cascade;
 
 create schema cccaTest;
 

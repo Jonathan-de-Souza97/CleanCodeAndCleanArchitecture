@@ -92,5 +92,23 @@ namespace signup.Architecture.Repository
                 return Response<Account>.Error(ex.Message);
             }
         }
+
+        public async Task<Response<List<Account>>> GetUsers()
+        {
+            var sql = $@"SELECT * FROM account";
+
+            try
+            {
+                var connection = await _context.Connection();
+
+                var accounts = await connection.QueryAsync<Account>(sql);
+
+                return Response<List<Account>>.Success(accounts.ToList());
+            }
+            catch (Exception ex)
+            {
+                return Response<List<Account>>.Error(ex.Message);
+            }
+        }
     }
 }

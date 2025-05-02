@@ -12,5 +12,6 @@ namespace signup.Architecture.Interface
         Task<Response<Account>> GetByEmail(string email);
 
         Task<Response<Account>> GetByDocument(string document);
+        Task<Response<List<Account>>> GetUsers();
     }
 }
